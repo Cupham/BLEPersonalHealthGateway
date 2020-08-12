@@ -1,0 +1,579 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hl7.Fhir.ElementModel</name>
+    </assembly>
+    <members>
+        <member name="T:Hl7.Fhir.ElementModel.Adapters.BaseNodeToNavAdapter">
+            <summary>
+            An abstract class on which to build adapter components that adapt a node-based
+            representation of FHIR data to a navigator based representation.
+            </summary>
+            <remarks>This is a highly specialized class used by the API to create backwards-compatibility
+            adapters to enable working side-by-side with node-based and navigator-based representations
+            of data. Should not normally be used for other purposes.</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.ElementNode.ForPrimitive(System.Object)">
+            <summary>
+            Creates an implementation of ITypedElement that represents a primitive value
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.ElementNode.CreateList(System.Object[])">
+            <summary>
+            Create a fixed length set of values (but also support variable number of parameter values)
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.ElementNode.CreateList(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            Create a variable list of values using an enumeration
+            - so doesn't have to be converted to an array in memory (issue with larger dynamic lists)
+            </summary>
+            <param name="values"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.ElementNode.importChild(Hl7.Fhir.Specification.IStructureDefinitionSummaryProvider,Hl7.Fhir.ElementModel.ElementNode,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Will update the child to reflect it being a child of this element, but will not yet add the child at any position within this element
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.ElementNodeComparator.IsEqualTo(Hl7.Fhir.ElementModel.ITypedElement,Hl7.Fhir.ElementModel.ITypedElement)">
+            <summary>
+            Compares two <see cref="T:Hl7.Fhir.ElementModel.ITypedElement"/> trees.
+            </summary>
+            <param name="expected">The tree that contains the expected, "correct" data.</param>
+            <param name="actual">The tree to compare against the <paramref name="expected"/> tree.</param>
+            <returns>A <see cref="T:Hl7.Fhir.ElementModel.TreeComparisonResult"/> that summarizes the differences between the trees.</returns>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.ICdaInfoSupplier.XHtmlText">
+            <summary>
+            Retrieves the xHtml text of a cda logic model
+            </summary>
+        </member>
+        <member name="T:Hl7.Fhir.ElementModel.IElementNavigator">
+            <summary>
+            A type-aware navigator across a tree representing FHIR data, independent of serialization format or FHIR version.
+            </summary>
+            <remarks>
+            Since this navigator associates type information with each (known) element, the element names are represented using
+            their defined name (without type suffix) and the underlying raw value is parsed into a native .NET representation
+            </remarks>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.IElementNavigator.MoveToNext(System.String)">
+            <summary>
+            Move to the next sibling of the current element.
+            </summary>
+            <returns>false when there is no next sibling, true otherwise.</returns>
+            <remarks>Elements with the same name will always be direct siblings.</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.IElementNavigator.MoveToFirstChild(System.String)">
+            <summary>
+            Move to the first child of the current element.
+            </summary>
+            <param name="nameFilter">
+            If the value is provided, then only elements that have this value for the name should
+            be considered by the navigator (during MoveNext())
+            </param>
+            <returns>false if the element has no children, true otherwise</returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.IElementNavigator.Clone">
+            <summary>
+            Clone the current navigator
+            </summary>
+            <returns>A navigator that is positioned at the same location as the cloned navigator.</returns>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.IElementNavigator.Name">
+            <summary>
+            Name of the node, e.g. "active", "value".
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.IElementNavigator.Type">
+            <summary>
+            Type of the node. If a FHIR type, this is just a simple string, otherwise a StructureDefinition url for a type defined as a logical model.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.IElementNavigator.Value">
+             <summary>
+             The value of the node (if it represents a primitive FHIR value)
+             </summary>
+             <remarks>
+             FHIR primitives are mapped to underlying C# types as follows:
+            
+             instant         Hl7.Fhir.Model.Primitive.PartialDateTime
+             time            Hl7.Fhir.Model.Primitive.PartialTime
+             date, dateTime  Hl7.Fhir.Model.Primitive.PartialDateTime
+             decimal         decimal
+             boolean         bool
+             integer         long
+             unsignedInt     long
+             positiveInt     long
+             string          string
+             code            string
+             id              string
+             uri, oid, uuid, 
+             canonical, url  string
+             markdown        string
+             base64Binary    string (uuencoded)
+             xhtml           string
+             </remarks>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.IElementNavigator.Location">
+            <summary>
+            An indication of the location of this node within the data represented by the navigator.
+            </summary>
+            <remarks>The format of the location is the dotted name of the property, including indices to make
+            sure repeated occurences of an element can be distinguished. It needs to be sufficiently precise to aid 
+            the user in locating issues in the data.</remarks>
+        </member>
+        <member name="T:Hl7.Fhir.ElementModel.IResourceTypeSupplier">
+            <summary>
+            This interface is implemented by FHIR parsers to represent the resource type indicator
+            found in the parsed data.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.IResourceTypeSupplier.ResourceType">
+            <summary>
+            Gets the resource type found at the location of the node in the source data (if any).
+            </summary>
+            <value>The value of resource type indicator (e.g. <c>resourceType</c> in json, or contained node in XML) or
+            <c>null</c> if such an indicator was not found.</value>
+        </member>
+        <member name="T:Hl7.Fhir.ElementModel.IShortPathGenerator">
+            <summary>
+            This interface is implemented by implementers of <see cref="T:Hl7.Fhir.ElementModel.ITypedElement" /> to represent the short path
+            to an element.
+            </summary>
+            <remarks>There is a difference between the <see cref="P:Hl7.Fhir.ElementModel.ITypedElement.Location"/> and the short path. The
+            former always includes an index selector, even if the element does not repeat, whereas the short path
+            only uses index selectors when necessary. As an example, a <c>Location</c> would be <c>Patient.active[0]</c>,
+            whereas the short path for the same location would be <c>Patient.active</c>. For repeating nodes, the
+            location and the short path are the same.</remarks>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.IShortPathGenerator.ShortPath">
+            <summary>
+            Gets the short path of the node the <see cref="T:Hl7.Fhir.ElementModel.ITypedElement"/> represents.
+            (any single cardinality nodes will be stripped of their [0] array indexer)
+            </summary>
+            <value>Returns the short path, which is a dotted path notation to the node</value>
+        </member>
+        <member name="T:Hl7.Fhir.ElementModel.ISourceNode">
+            <summary>
+            A node within a tree of FHIR data.
+            </summary>
+            <remarks>
+            <para>This interface is typically implemented by a parser for one of the low-level serialization formats for FHIR, i.e.
+            FHIR xml/json/rdf or v3 XML. The interface does not depend on the availability of FHIR metadata and definitions
+            (in contrast to <see cref="T:Hl7.Fhir.ElementModel.ITypedElement" />), so the names of the nodes will have their type suffixes (for choice types) 
+            and all primitives values are represented as strings, instead of native objects.</para>
+            <para>Implementations of this interface that want to report errors while parsing should only do so on the 
+            <see cref="M:Hl7.Fhir.ElementModel.ISourceNode.Children(System.String)"/> function and <see cref="P:Hl7.Fhir.ElementModel.ISourceNode.Text"/> getter.</para>
+            </remarks>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.ISourceNode.Name">
+            <summary>
+            Gets the name of the node, e.g. "active", "valueQuantity".
+            </summary>
+            <remarks>Since the node has no type information, choice elements are represented as their 
+            name on the wire, possibly including the type suffix for choice elements.
+            </remarks>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.ISourceNode.Text">
+            <summary>
+            Gets the text of the primitive value of the node
+            </summary>
+            <value>Returns the raw textual value as represented in the serialization, or null if there is no value in this node.</value>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.ISourceNode.Location">
+            <summary>
+            Gets the location of this node within the tree of data.
+            </summary>
+            <value>A string of dot-separated names representing the path to the node within the tree, including indices
+            to distinguish repeated occurences of an element.</value>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.ISourceNode.Children(System.String)">
+            <summary>
+            Enumerates the direct child nodes of the current node (if any).
+            </summary>
+            <param name="name">Optional. The name filter for the children. Can be omitted to not filter by name.</param>
+            <returns>The children of the node matching the given filter, or all children if no filter was specified.
+            If no children match the given filter, the function returns an empty enumerable.</returns>
+            <remarks>
+            <para>If the <paramref name="name"/>parameter ends in an asterix ('*'),
+            the function will return the children of which the name starts with the given name.</para>
+            <para>Repeating elements will always be returned consecutively.</para></remarks>
+        </member>
+        <member name="T:Hl7.Fhir.ElementModel.ITypedElement">
+            <summary>
+            A element within a tree of typed FHIR data.
+            </summary>
+            <remarks>
+            This interface represents FHIR data as a tree of elements, including type information either present in 
+            the instance or derived from fully aware of the FHIR definitions and types
+            </remarks>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.ITypedElement.Children(System.String)">
+            <summary>
+            Enumerate the child nodes present in the source representation (if any)
+            </summary>
+            <param name="name">Return only the children with the given name.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.ITypedElement.Name">
+            <summary>
+            Name of the node, e.g. "active", "value".
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.ITypedElement.InstanceType">
+            <summary>
+            Type of the node. If a FHIR type, this is just a simple string, otherwise a StructureDefinition url for a type defined as a logical model.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.ITypedElement.Value">
+             <summary>
+             The value of the node (if it represents a primitive FHIR value)
+             </summary>
+             <remarks>
+             FHIR primitives are mapped to underlying C# types as follows:
+            
+             instant         Hl7.Fhir.Model.Primitive.PartialDateTime
+             time            Hl7.Fhir.Model.Primitive.PartialTime
+             date, dateTime  Hl7.Fhir.Model.Primitive.PartialDateTime
+             decimal         decimal
+             boolean         bool
+             integer         long
+             unsignedInt     long
+             positiveInt     long
+             string          string
+             code            string
+             id              string
+             uri, oid, uuid, 
+             canonical, url  string
+             markdown        string
+             base64Binary    string (uuencoded)
+             xhtml           string
+             </remarks>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.ITypedElement.Location">
+            <summary>
+            An indication of the location of this node within the data represented by the navigator.
+            </summary>
+            <remarks>The format of the location is the dotted name of the property, including indices to make
+            sure repeated occurences of an element can be distinguished. It needs to be sufficiently precise to aid 
+            the user in locating issues in the data.</remarks>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.MaskingNode._includeAll">
+            <summary>
+            Set to true when a complex type property is mandatory so all its children need to be included
+            </summary>
+        </member>
+        <member name="T:Hl7.Fhir.ElementModel.MaskingNodeSettings">
+            <summary>Configuration settings for the <see cref="T:Hl7.Fhir.ElementModel.MaskingNode"/> class.</summary>
+        </member>
+        <member name="T:Hl7.Fhir.ElementModel.MaskingNodeSettings.PreserveBundleMode">
+            <summary>
+            The different ways in which Bundles are masked.
+            </summary>
+        </member>
+        <member name="F:Hl7.Fhir.ElementModel.MaskingNodeSettings.PreserveBundleMode.None">
+            <summary>
+            All Bundles (including nested) are masked like any other resource 
+            </summary>
+        </member>
+        <member name="F:Hl7.Fhir.ElementModel.MaskingNodeSettings.PreserveBundleMode.Root">
+            <summary>
+            The Bundle at the root is preserved, nested bundles are masked
+            </summary>
+        </member>
+        <member name="F:Hl7.Fhir.ElementModel.MaskingNodeSettings.PreserveBundleMode.All">
+            <summary>
+            All Bundles (including nested) are exempt from masking
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.MaskingNodeSettings.PreserveBundle">
+            <summary>
+            Determines how Bundles are masked.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.MaskingNodeSettings.IncludeMandatory">
+            <summary>
+            Include top-level mandatory elements, including all their children
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.MaskingNodeSettings.IncludeInSummary">
+            <summary>
+            Include all elements marked "in summary" in the definition of the element
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.MaskingNodeSettings.ExcludeNarrative">
+            <summary>
+            Exclude all elements of type "Narrative"
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.MaskingNodeSettings.ExcludeMarkdown">
+            <summary>
+            Exclude all elements of type "Markdown"
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.MaskingNodeSettings.IncludeAll">
+            <summary>
+            Start by including all elements
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.MaskingNodeSettings.IncludeElements">
+            <summary>
+            List of names op top-level elements to include, including their children
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.MaskingNodeSettings.ExcludeElements">
+            <summary>
+            List of top-level elements to exclude
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.MaskingNodeSettings.#ctor">
+            <summary>Default constructor. Creates a new <see cref="T:Hl7.Fhir.ElementModel.MaskingNodeSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.MaskingNodeSettings.#ctor(Hl7.Fhir.ElementModel.MaskingNodeSettings)">
+            <summary>Clone constructor. Generates a new <see cref="T:Hl7.Fhir.ElementModel.MaskingNodeSettings"/> instance initialized from the state of the specified instance.</summary>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.MaskingNodeSettings.CopyTo(Hl7.Fhir.ElementModel.MaskingNodeSettings)">
+            <summary>Copy all configuration settings to another instance.</summary>
+            <param name="other">Another <see cref="T:Hl7.Fhir.ElementModel.MaskingNodeSettings"/> instance.</param>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.MaskingNodeSettings.Clone">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.ElementModel.MaskingNodeSettings"/> object that is a copy of the current instance.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.MaskingNodeSettings.CreateDefault">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.ElementModel.MaskingNodeSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="F:Hl7.Fhir.ElementModel.ScopedNode.ParentResource">
+            <summary>
+            Represents the most direct resource parent in which the current node 
+            is located.
+            </summary>
+            <remarks>
+            When the node is the inital root, there is no parent.
+            </remarks>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.ScopedNode.ResourceContext">
+            <summary>
+            The %resource context, as defined by FHIRPath
+            </summary>
+            <remarks>
+            This is the original resource the current context is part of. When evaluating a datatype, 
+            this would be the resource the element is part of. Do not go past a root resource into a bundle, 
+            if it is contained in a bundle.
+            </remarks>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.ScopedNode.ParentResources">
+            <summary>
+            Get the list of container parents in a list, nearest parent first.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.ScopedNode.Id">
+            <summary>
+            Returns the Id of the resource, if the current node is a resource
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNode.FromNode(Hl7.Fhir.ElementModel.ISourceNode,System.Boolean,System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            
+            </summary>
+            <param name="node"></param>
+            <param name="recursive"></param>
+            <param name="annotationsToCopy">Maybe: if null - copy all, if empty, copy none, else specifcy which</param>
+            <returns></returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.Children(System.Collections.Generic.IEnumerable{Hl7.Fhir.ElementModel.ISourceNode},System.String)">
+            <summary>
+            Returns the direct children of a set of nodes.
+            </summary>
+            <param name="node">A list of nodes.</param>
+            <param name="name"> Optional.The name filter for the children. Can be omitted to not filter by name.</param>
+            <returns>The children of all nodes passed into <paramref name="node"/>, aggregated into a single list.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.Descendants(Hl7.Fhir.ElementModel.ISourceNode)">
+            <summary>
+            Returns all descendants of a node.
+            </summary>
+            <param name="node">A node.</param>
+            <returns>The descendants (children and by recursion all children of the children) of the node passed into 
+            <paramref name="node"/></returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.Descendants(System.Collections.Generic.IEnumerable{Hl7.Fhir.ElementModel.ISourceNode})">
+            <summary>
+            Returns all descendants of a set of nodes.
+            </summary>
+            <param name="nodes">A list of nodes.</param>
+            <returns>The descendants (children and by recursion all children of the children) of the node passed into 
+            <paramref name="nodes"/></returns>
+            <returns>The descendants of all nodes passed into <paramref name="nodes"/>, aggregated into a single list.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.DescendantsAndSelf(Hl7.Fhir.ElementModel.ISourceNode)">
+            <summary>
+            Returns a node and all descendants of that node.
+            </summary>
+            <param name="node">A node.</param>
+            <returns>The node and descendants (children and by recursion all children of the children) of the node passed into 
+            <paramref name="node"/></returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.DescendantsAndSelf(System.Collections.Generic.IEnumerable{Hl7.Fhir.ElementModel.ISourceNode})">
+            <summary>
+            Returns nodes and all descendants of those nodes from a set of nodes.
+            </summary>
+            <param name="nodes">A list of nodes.</param>
+            <returns>The node and descendants (children and by recursion all children of the children) of all
+            nodes passed into <paramref name="nodes"/></returns>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.Visit(Hl7.Fhir.ElementModel.ISourceNode,System.Action{System.Int32,Hl7.Fhir.ElementModel.ISourceNode})">
+            <summary>
+            Runs an action on all nodes in a tree of nodes.
+            </summary>
+            <param name="root">The root of the tree.</param>
+            <param name="visitor">The action to run on each node.</param>
+            <remarks>The function does a depth-first traversal of the tree, starting at the root. The action is
+            passed an integer representing the depth of the node in the tree, measured in steps from the node
+            to the root.</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.Catch(Hl7.Fhir.ElementModel.ISourceNode,Hl7.Fhir.Utility.ExceptionNotificationHandler,System.Boolean)">
+            <summary>
+            Registers an <see cref="T:Hl7.Fhir.Utility.ExceptionNotificationHandler" /> with an <see cref="T:Hl7.Fhir.Utility.IExceptionSource"/>.
+            </summary>
+            <seealso cref="M:Hl7.Fhir.Utility.ExceptionSourceExtensions.Catch(Hl7.Fhir.Utility.IExceptionSource,Hl7.Fhir.Utility.ExceptionNotificationHandler,System.Boolean)"/>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.VisitAll(Hl7.Fhir.ElementModel.ISourceNode)">
+            <summary>
+            Visit all nodes in a tree while invoking the <see cref="P:Hl7.Fhir.ElementModel.ISourceNode.Text" /> getter. />
+            </summary>
+            <param name="root">The root of the tree to visit.</param>
+            <remarks>Since implementations of ISourceNode will report parsing errors when enumerating
+            children and getting their <see cref="P:Hl7.Fhir.ElementModel.ISourceNode.Text"/> getter, this will trigger all
+            parsing errors to be reported by the source.</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.VisitAndCatch(Hl7.Fhir.ElementModel.ISourceNode)">
+            <summary>
+            Visits all nodes in a tree while catching any reported parsing errors. />
+            </summary>
+            <param name="root">The root of the tree to visit.</param>
+            <returns>The list of all exceptions reported while visiting the tree passed in
+            the <paramref name="root"/> argument.</returns>
+            <seealso cref="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.VisitAll(Hl7.Fhir.ElementModel.ISourceNode)"/>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.GetResourceTypeIndicator(Hl7.Fhir.ElementModel.ISourceNode)">
+            <summary>
+            Gets the <see cref="T:Hl7.Fhir.ElementModel.IResourceTypeSupplier" /> annotation from an <c>ISourceNode</c>
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.Annotations(Hl7.Fhir.ElementModel.ISourceNode,System.Type)">
+            <summary>
+            Gets specific annotations from the list of annotations on the node.
+            </summary>
+            <returns>All of the annotations of the given type, or an empty list if none were found.</returns>
+            <seealso cref="T:Hl7.Fhir.Utility.IAnnotated"/>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.Annotation``1(Hl7.Fhir.ElementModel.ISourceNode)">
+            <summary>
+            Gets a specific annotation from the list of annotations on the node.
+            </summary>
+            <returns>The first of the annotations of the type given by <typeparamref name="T"/>,
+            or an empty list if none were found.</returns>
+            <seealso cref="T:Hl7.Fhir.Utility.IAnnotated"/>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.ToTypedElement(Hl7.Fhir.ElementModel.ISourceNode,Hl7.Fhir.Specification.IStructureDefinitionSummaryProvider,System.String,Hl7.Fhir.ElementModel.TypedElementSettings)">
+            <summary>
+            Turns the <c>ISourceNode</c> into a <see cref="T:Hl7.Fhir.ElementModel.ITypedElement"/> by adding type information to it.
+            </summary>
+            <param name="node">The node containing the source information.</param>
+            <param name="provider">The provider which supplies type information.</param>
+            <param name="type">Optional. The type of the element at the root.</param>
+            <param name="settings"></param>
+            <returns>An <see cref="T:Hl7.Fhir.ElementModel.ITypedElement"/> that represents the data in the node, with type information
+            added to it.</returns>
+            <remarks>This extension method decorates the <c>ISourceNode</c> with a new instance of
+            an <see cref="T:Hl7.Fhir.ElementModel.TypedElementOnSourceNode"/>, passing on the parameters of this extension method.</remarks>
+            <seealso cref="T:Hl7.Fhir.ElementModel.ITypedElement"/>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.ToTypedElement(Hl7.Fhir.ElementModel.ISourceNode)">
+            <summary>
+            Adapting an <c>ISourceNode</c> to a <see cref="T:Hl7.Fhir.ElementModel.ITypedElement"/> without adding type information to it.
+            </summary>
+            <param name="node"></param>
+            <returns></returns>
+            <remarks>In contrast to <see cref="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.ToTypedElement(Hl7.Fhir.ElementModel.ISourceNode,Hl7.Fhir.Specification.IStructureDefinitionSummaryProvider,System.String,Hl7.Fhir.ElementModel.TypedElementSettings)"/>,
+            this method simulates an <c>ITypedElement</c> on top of an <c>ISourceNode</c>, without adding type information to
+            it. This is used internally in a few places in the API, where the component using the <c>ITypedNode</c> is aware it
+            cannot depend on type information being present, but should normally not be used.
+            </remarks>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.SourceNodeExtensions.ToElementNavigator(Hl7.Fhir.ElementModel.ISourceNode)">
+            <summary>
+            Adapts the node to implement the <see cref="T:Hl7.Fhir.ElementModel.IElementNavigator"/> interface.
+            </summary>
+            <param name="node">The node to be adapted.</param>
+            <returns>An implementation of <see cref="T:Hl7.Fhir.ElementModel.IElementNavigator"/> on top of the node passed in.</returns>
+            <remarks>Only to be used for backwards compatibility purposes, where an <see cref="T:Hl7.Fhir.ElementModel.IElementNavigator"/> is needed
+            but only the newer <c>ISourceNode</c> is available. Note that since there is no type information available
+            on <c>ISourceNode</c>, components depending on type information that is supposed to be present on
+            <c>IElementNavigator</c> may fail.</remarks>
+        </member>
+        <member name="T:Hl7.Fhir.ElementModel.TypedElementSettings.TypeErrorMode">
+            <summary>
+            Ways to handle missing type information for an element.
+            </summary>
+        </member>
+        <member name="F:Hl7.Fhir.ElementModel.TypedElementSettings.TypeErrorMode.Report">
+            <summary>
+            Raise an error when no type information is available.
+            </summary>
+        </member>
+        <member name="F:Hl7.Fhir.ElementModel.TypedElementSettings.TypeErrorMode.Ignore">
+            <summary>
+            Ignore the element, it will not be represented in the tree.
+            </summary>
+        </member>
+        <member name="F:Hl7.Fhir.ElementModel.TypedElementSettings.TypeErrorMode.Passthrough">
+            <summary>
+            The element will be represented in the tree, without type information.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.ElementModel.TypedElementSettings.ErrorMode">
+            <summary>
+            Determines how to proceed when an element is encountered for which there is no type information available.
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.TypedElementSettings.#ctor">
+            <summary>Default constructor. Creates a new <see cref="T:Hl7.Fhir.ElementModel.TypedElementSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.TypedElementSettings.#ctor(Hl7.Fhir.ElementModel.TypedElementSettings)">
+            <summary>Clone constructor. Generates a new <see cref="T:Hl7.Fhir.ElementModel.TypedElementSettings"/> instance initialized from the state of the specified instance.</summary>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.TypedElementSettings.CopyTo(Hl7.Fhir.ElementModel.TypedElementSettings)">
+            <summary>Copy all configuration settings to another instance.</summary>
+            <param name="other">Another <see cref="T:Hl7.Fhir.ElementModel.TypedElementSettings"/> instance.</param>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.TypedElementSettings.Clone">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.ElementModel.TypedElementSettings"/> object that is a copy of the current instance.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.ElementModel.TypedElementSettings.CreateDefault">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.ElementModel.TypedElementSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.BaseTypedElement">
+            <summary>
+            A base class for creating components wrapping another <see cref="T:Hl7.Fhir.ElementModel.ITypedElement"/> component.
+            </summary>
+            <remarks>
+            By default, all members of <see cref="T:Hl7.Fhir.ElementModel.ITypedElement"/> are forwarden to the instance passed in the
+            constructor, but any of the members can be overridden in the subclass.
+            </remarks>
+        </member>
+    </members>
+</doc>

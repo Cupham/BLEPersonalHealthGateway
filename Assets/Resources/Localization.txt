@@ -1,0 +1,97 @@
+KEY,English,Tiếng Việt
+Flag,US,VN
+Language,English,Tiếng Việt
+TEXT_ID_HOME_1,Arena,Đấu trường
+TEXT_ID_HOME_2,Heros Base,Nhà Tướng
+TEXT_ID_HOME_3,Shop,Cửa Hàng
+TEXT_ID_HOME_4,Soldier Base,Nhà Lính
+TEXT_ID_HOME_5,HighScore,Bảng Xếp Hạng
+TEXT_ID_HOME_6,House,Nhà Chính
+TEXT_ID_HOME_7,Train,Luyện Cấp
+TEXT_ID_HOME_8,Upgrade,Nâng Cấp
+TEXT_ID_HOME_9,Name,Tên
+TEXT_ID_HOME_10,Level Up,Cấp Độ
+TEXT_ID_HOME_11,Number Of Soldiers,Số Lính
+TEXT_ID_HOME_12,Number Of Hero,Số Tướng
+TEXT_ID_HOME_13,Hero Manager,Quản Lý Tướng
+TEXT_ID_HOME_14,Buy Hero,Mua Tướng
+TEXT_ID_HOME_15,Soldier Manager,Quản Lý Lính
+TEXT_ID_HOME_16,Inform,Thông Báo
+TEXT_ID_HOME_17,This function is under construction!. Please download the next version,Chức năng này đang được xây dựng!. Hãy tải phiên bản kế tiếp
+TEXT_ID_HOME_18,Level,Cấp
+TEXT_ID_HOME_19,Fame,Danh Vọng
+TEXT_ID_HOME_20,Gem,Ngọc
+TEXT_ID_HOME_21,The Rich,Phú Hộ
+TEXT_ID_HOME_22,Buy Soldier,Mua Lính
+TEXT_ID_HOME_23,Strength,Sức Đánh
+TEXT_ID_HOME_24,Blood,Máu
+TEXT_ID_HOME_25,You may want to upgrade this soldier?,Bạn có muốn nâng cấp lính này?
+TEXT_ID_HOME_26,Failed,Thất Bại
+TEXT_ID_HOME_27,You have run out of space containing soldiers. Upgrade House to increase capacity ,Bạn đã hết chỗ chứa lính. Hãy nâng cấp Nhà Chính để tăng thêm sức chứa
+TEXT_ID_HOME_28,Sell Hero ,Bán Tướng
+TEXT_ID_HOME_29,You may want to upgrade the house?,Bạn có muốn nâng cấp Nhà Chính?
+TEXT_ID_HOME_30,You have run out of space containing Heros. Upgrade House to increase capacity ,Bạn đã hết chỗ chứa tướng. Hãy nâng cấp Nhà Chính để tăng thêm sức chứa
+TEXT_ID_HOME_31,Success,Thành Công
+TEXT_ID_HOME_32,You have successfully purchased Heros,Bạn đã mua thành công tướng này
+TEXT_ID_HOME_33,Error,Lỗi
+TEXT_ID_HOME_34,Username must be more than 5 characters,Tên người dùng phải hơn 5 kí tự
+TEXT_ID_HOME_35,User name must not exceed 15 characters,Tên người dùng phải không được quá 15 kí tự
+TEXT_ID_HOME_36,User name can not contain special characters. Including spaces,Tên người dùng không được chứa kí tự đặt biết. Kể cả khoảng trống
+TEXT_ID_HOME_37,Username already exists. Please choose another,Tên người dùng này đã tồn tại. Vui lòng chọn một tên khác
+TEXT_ID_HOME_38,Congratulations. Enter the name of success!,Chúc mừng. Nhập tên thành công!
+TEXT_ID_HOME_39,Gold Exchange,Đổi Vàng
+TEXT_ID_HOME_40,Crystal Exchange,Đổi Crystal
+TEXT_ID_HOME_41,Enter the gem that you want to convert to gold,Nhập Số Gem mà bạn muốn đổi ra Vàng 
+TEXT_ID_HOME_42,Enter the gem that you want to convert Crystal,Nhập Số Gem mà bạn muốn đổi ra Crytal 
+TEXT_ID_HOME_43,Do not exceed the amount of your GEM,Không được vượt quá số GEM của bạn 
+TEXT_ID_HOME_44,1 Gem = 100 Gold,1 Gem = 100 Vàng
+TEXT_ID_HOME_45,1 Gem = 1000 Crytal,1 Gem = 1000 Crytal
+TEXT_ID_HOME_46,Entry requirements correct format,Yêu cầu nhập đúng định dạng 
+TEXT_ID_HOME_47,You need to practice this more Hero level,Bạn cần phải luyện tướng này lên level
+TEXT_ID_HOME_48,Do you want to upgrade this Heros?,Bạn có muốn nâng cấp tướng này?
+TEXT_ID_HOME_49,Do not exceed the number of your coins,Không được vượt quá số Xu của bạn
+TEXT_ID_HOME_50,Data entry is not exactly,Dữ liệu nhập không chính xác 
+TEXT_ID_HOME_51,You must be renamed before you load the card. Exit the game and then open again to enter the name,Bạn phải đổi tên trước khi nạp thẻ. Hãy thoát game sau đó mở lại để nhập tên 
+TEXT_ID_HOME_52,You have loaded into your account,Bạn đã nạp vào tài khoản của bạn
+TEXT_ID_HOME_53,You already use functionality!,Bạn đã sữ dụng chức năng này!
+TEXT_ID_HOME_54,Win,Chiến Thắng
+TEXT_ID_HOME_55,Coin,Xu
+TEXT_ID_HOME_56,Charging Card,Nạp thẻ cào
+TEXT_ID_HOME_57,Pin Code,Mã Pin
+TEXT_ID_HOME_58,Exit,Thoát
+TEXT_ID_HOME_59,Do you want to quit?,Bạn có muốn thoát không?
+TEXT_ID_HOME_60,You should load coins scratch card trends can be converted into valuable GEM 5 times compared with SMS and uses Hero trend can unlock,Bạn nên nạp xu bằng thẻ cào, có thể đổi ra GEM có giá trị gấp 5 lần so với SMS và dùng xu có thể mở khóa tướng
+TEXT_ID_HOME_61,Rules,Thể Lệ
+TEXT_ID_HOME_62,Card 10k -> 100Gem,Thẻ 10K -> 100Gem
+TEXT_ID_HOME_63,Card 20k -> 220Gem,Thẻ 20K -> 220Gem
+TEXT_ID_HOME_64,Card 50k -> 600Gem,Thẻ 20K -> 600Gem
+TEXT_ID_HOME_65,Card 100k -> 1300Gem,Thẻ 100K -> 1300Gem
+TEXT_ID_HOME_66,Card 200k -> 3000Gem,Thẻ 200K -> 3000Gem
+TEXT_ID_HOME_67,Card 500k -> 8000Gem,Thẻ 500K -> 8000Gem
+TEXT_ID_HOME_68,Update,Cập Nhật
+TEXT_ID_HOME_69,Do you want to cập nhật up latest version is not?,Bạn có muốn update lên phiên bản mới nhất không?
+TEXT_ID_HOME_70,Bonuses,Thưởng Tiền
+TEXT_ID_HOME_71,You just received,Bạn vừa nhận được
+TEXT_ID_HOME_72,Charging Gem,Nạp Gem
+TEXT_ID_HOME_73,Bonus Coins,Thưởng xu
+TEXT_ID_HOME_74,Coin,Xu
+TEXT_ID_HOME_75,You just received 20Gem by logging in first day,Bạn vừa nhận được 20Gem do đăng nhập lần đầu tiên trong ngày
+TEXT_ID_HOME_76,You enter your nickname to join the arena and highscore,Bạn cần nhập nick name của mình để tham gia đấu trường và bảng xếp hạng
+TEXT_ID_HOME_77,You do not have enough Xu. Get involved in the fight game can increase XU. You wish to be added by Viettel not scratch card?,Bạn không đủ Xu. Hãy tham gia đấu trận thể tăng XU. Bạn có muốn nạp thêm bằng thẻ cào Viettel không?s
+TEXT_ID_HOME_78,You do not have enough GEM. Receive daily or reward GEM GEM admission. You want to recharge scratch cards Viettel not?,Bạn không đủ GEM. Hãy nhận GEM thưởng hằng ngày hoặc nạp thêm GEM, Bạn có muốn nạp thêm bằng thẻ cào Viettel không? 
+TEXT_ID_HOME_79,You do not have enough MANA. Join us to increase MANA play games. You want to recharge scratch cards Viettel not?,Bạn không đủ MANA. Hãy tham gia đấu trận thể tăng MANA. Bạn có muốn nạp thêm bằng thẻ cào Viettel không?
+TEXT_ID_HOME_80,Feedback Error,Phản Hồi Lỗi
+TEXT_ID_HOME_81,Feedback,Góp Ý
+TEXT_ID_HOME_82,Rate 5 Stars,Rate 5 Sao
+TEXT_ID_HOME_83,Install Bigkool,Cài Bigkool
+TEXT_ID_HOME_84,Every item you'll receive 20 Gem,Mỗi mục bạn sẽ nhận được 20 Gem
+chuahotroios,This function will support on next version, Chức năng này sẽ được hỗ trợ ở phiên bản sau
+canhbao,Warning,Cảnh Báo
+bankhongdulinh,You do not have any troops. let hire somes,Bạn không có lính, hãy vào nhà lính để mua thêm
+daconguoidauthua,There is a user attack you at Arena. You love: -10Coin,Đã có thành viên vừa đấu với bạn tại đấu trường. Bạn thua : -10Xu
+daconguoidauthang,There is a user attack you at Arena. You Win: +10Coin,Đã có thành viên vừa đấu với bạn tại đấu trường. Bạn thắng : +10Xu
+daurandom,Random,Ngẫu Nhiên
+bancomuonrate,Like this game? Rate 5 stars?, Bạn có muốn đánh giá game này không?
+bancomuonbantuongnay,Do you want to sell this hero for {0} Coin?, Bạn có muốn bán tướng này với giá {0} Xu không?
+soluong,Num:,Số lượng:
+rateios,Visit STGAME, Duyệt STGAME

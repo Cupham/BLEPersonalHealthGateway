@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hl7.Fhir.Support.Poco</name>
+    </assembly>
+    <members>
+        <member name="M:Hl7.Fhir.Model.Base.CopyTo(Hl7.Fhir.Model.IDeepCopyable)">
+            <summary>
+            
+            </summary>
+            <param name="other"></param>
+            <remarks>Does a deep-copy of all elements, except UserData</remarks>
+            <returns></returns>
+        </member>
+        <member name="P:Hl7.Fhir.Model.Base.Children">
+            <summary>
+            Enumerate all child nodes.
+            Return a sequence of child elements, components and/or properties.
+            Child nodes are returned in the order defined by the FHIR specification.
+            First returns child nodes inherited from any base class(es), recursively.
+            Finally returns child nodes defined by the current class.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Model.Base.NamedChildren">
+            <summary>
+            Enumerate all child nodes.
+            Return a sequence of child elements, components and/or properties.
+            Child nodes are returned as tuples with the name and the node itself, in the order defined 
+            by the FHIR specification.
+            First returns child nodes inherited from any base class(es), recursively.
+            Finally returns child nodes defined by the current class.
+            </summary>
+        </member>
+        <member name="T:Hl7.Fhir.Model.IValue`1">
+            <summary>Common generic Value property interface.</summary>
+            <typeparam name="T">The value type.</typeparam>
+        </member>
+        <member name="P:Hl7.Fhir.Model.IValue`1.Value">
+            <summary>Gets or sets the value</summary>
+        </member>
+        <member name="T:Hl7.Fhir.Model.IStringValue">
+            <summary>Common string Value property interface.</summary>
+        </member>
+        <member name="T:Hl7.Fhir.Model.INullableValue`1">
+            <summary>Common generic nullable value property interface.</summary>
+            <typeparam name="T">The value type.</typeparam>
+        </member>
+        <member name="T:Hl7.Fhir.Model.INullableIntegerValue">
+            <summary>Common nullable integer value property interface.</summary>
+        </member>
+    </members>
+</doc>

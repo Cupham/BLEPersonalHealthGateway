@@ -1,0 +1,560 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hl7.Fhir.Serialization</name>
+    </assembly>
+    <members>
+        <member name="T:Hl7.Fhir.Serialization.FhirFileFormats">
+            <summary>Provides generic definitions and methods for FHIR file formats supported by the API.</summary>
+            <seealso cref="T:Hl7.Fhir.Serialization.FhirSerializationFormats"/>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.FhirFileFormats.XmlFileExtension">
+            <summary>Default Xml file extension: ".xml"</summary>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.FhirFileFormats.JsonFileExtension">
+            <summary>Default Json file extension: ".json"</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirFileFormats.HasXmlExtension(System.String)">
+            <summary>Determines if the file extension equals ".xml" (case insensitive).</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirFileFormats.HasJsonExtension(System.String)">
+            <summary>Determines if the file extension equals ".json" (case insensitive).</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirFileFormats.HasXmlOrJsonExtension(System.String)">
+            <summary>Determines if the file extension equals ".xml" or ".json" (case insensitive).</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirFileFormats.HasExtension(System.String,System.String)">
+            <summary>Determines if the file extension equals the specified value (case insensitive).</summary>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.FhirJsonParsingSettings">
+            <summary>Parser configuration settings for the <see cref="T:Hl7.Fhir.Serialization.FhirJsonNode"/> class.</summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirJsonParsingSettings.PermissiveParsing">
+            <summary>
+            Do not raise exceptions for recoverable errors.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirJsonParsingSettings.AllowJsonComments">
+            <summary>
+            Allow DSTU2-style Json comment members.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirJsonParsingSettings.ValidateFhirXhtml">
+            <summary>
+            Validate narrative against the FHIR Xhtml schema.
+            </summary>
+            <remarks>Validation of xhtml is expensive, so turned off by default.</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirJsonParsingSettings.#ctor">
+            <summary>Default constructor. Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirJsonParsingSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirJsonParsingSettings.#ctor(Hl7.Fhir.Serialization.FhirJsonParsingSettings)">
+            <summary>Clone constructor. Generates a new <see cref="T:Hl7.Fhir.Serialization.FhirJsonParsingSettings"/> instance initialized from the state of the specified instance.</summary>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirJsonParsingSettings.CopyTo(Hl7.Fhir.Serialization.FhirJsonParsingSettings)">
+            <summary>Copy all configuration settings to another instance.</summary>
+            <param name="other">Another <see cref="T:Hl7.Fhir.Serialization.FhirJsonParsingSettings"/> instance.</param>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirJsonParsingSettings.Clone">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirJsonParsingSettings"/> object that is a copy of the current instance.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirJsonParsingSettings.CreateDefault">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirJsonParsingSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.FhirJsonSerializationSettings">
+            <summary>Configuration settings for the <see cref="T:Hl7.Fhir.Serialization.FhirJsonBuilder"/> class.</summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirJsonSerializationSettings.IgnoreUnknownElements">
+            <summary>
+            When encountering a member without type information, just skip it instead of reporting an error.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirJsonSerializationSettings.Pretty">
+            <summary>
+            Format the json output when converted to a string.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirJsonSerializationSettings.AppendNewLine">
+            <summary>
+            Add new line at the end of the json output when converted to a string.
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirJsonSerializationSettings.#ctor">
+            <summary>Default constructor. Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirJsonSerializationSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirJsonSerializationSettings.#ctor(Hl7.Fhir.Serialization.FhirJsonSerializationSettings)">
+            <summary>Clone constructor. Generates a new <see cref="T:Hl7.Fhir.Serialization.FhirJsonSerializationSettings"/> instance initialized from the state of the specified instance.</summary>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirJsonSerializationSettings.CopyTo(Hl7.Fhir.Serialization.FhirJsonSerializationSettings)">
+            <summary>Copy all configuration settings to another instance.</summary>
+            <param name="other">Another <see cref="T:Hl7.Fhir.Serialization.FhirJsonSerializationSettings"/> instance.</param>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirJsonSerializationSettings.Clone">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirJsonSerializationSettings"/> object that is a copy of the current instance.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirJsonSerializationSettings.CreateDefault">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirJsonSerializationSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.FhirSerializationFormats">
+            <summary>String constants that represent FHIR resource serialization formats supported by the API.</summary>
+            <seealso cref="T:Hl7.Fhir.Serialization.FhirFileFormats"/>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.FhirSerializationFormats.Xml">
+            <summary>Represents the FHIR XML resource serialization format.</summary>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.FhirSerializationFormats.Json">
+            <summary>Represents the FHIR JSON resource serialization format.</summary>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.FhirSerializationFormats.All">
+            <summary>Returns an array of all defined serialization formats.</summary>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.FhirXmlParsingSettings">
+            <summary>Parser configuration settings for the <see cref="T:Hl7.Fhir.Serialization.FhirXmlNode"/> class.</summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirXmlParsingSettings.AllowedExternalNamespaces">
+            <summary>
+            A list of namespaces which are allowed in addition to the normal FHIR namespaces. 
+            </summary>
+            <remarks>Normally, the only allowed namespaces are 'http://hl7.org/fhir' and the XHTML namespace.</remarks>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirXmlParsingSettings.DisallowSchemaLocation">
+            <summary>
+            Raise an errors when an xsi:schemaLocation attribute is found on the root.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirXmlParsingSettings.PermissiveParsing">
+            <summary>
+            Do not raise exceptions for recoverable errors.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirXmlParsingSettings.ValidateFhirXhtml">
+            <summary>
+            Validate narrative against the FHIR Xhtml schema.
+            </summary>
+            <remarks>Validation of xhtml is expensive, so turned off by default.</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirXmlParsingSettings.#ctor">
+            <summary>Default constructor. Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirXmlParsingSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirXmlParsingSettings.#ctor(Hl7.Fhir.Serialization.FhirXmlParsingSettings)">
+            <summary>Clone constructor. Generates a new <see cref="T:Hl7.Fhir.Serialization.FhirXmlParsingSettings"/> instance initialized from the state of the specified instance.</summary>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirXmlParsingSettings.CopyTo(Hl7.Fhir.Serialization.FhirXmlParsingSettings)">
+            <summary>Copy all configuration settings to another instance.</summary>
+            <param name="other">Another <see cref="T:Hl7.Fhir.Serialization.FhirXmlParsingSettings"/> instance.</param>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirXmlParsingSettings.Clone">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirXmlParsingSettings"/> object that is a copy of the current instance.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirXmlParsingSettings.CreateDefault">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirJsonSerializationSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.FhirXmlSerializationSettings">
+            <summary>Configuration settings for the <see cref="T:Hl7.Fhir.Serialization.FhirXmlBuilder"/> class.</summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirXmlSerializationSettings.SkipUnknownElements">
+            <summary>
+            When encountering a member without type information, just skip it instead of reporting an error.
+            </summary>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.FhirXmlSerializationSettings.IgnoreUnknownElements">
+            <summary>
+            When encountering a member without type information, just skip it instead of reporting an error.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirXmlSerializationSettings.Pretty">
+            <summary>
+            Format the xml output when converted to a string.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirXmlSerializationSettings.AppendNewLine">
+            <summary>
+            Add new line at the end of the xml output when converted to a string.
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.FhirXmlSerializationSettings.TrimWhitespaces">
+            <summary>
+            Trims whitespaces add the beginning and the end of xml value attributes
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirXmlSerializationSettings.#ctor">
+            <summary>Default constructor. Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirXmlSerializationSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirXmlSerializationSettings.#ctor(Hl7.Fhir.Serialization.FhirXmlSerializationSettings)">
+            <summary>Clone constructor. Generates a new <see cref="T:Hl7.Fhir.Serialization.FhirXmlSerializationSettings"/> instance initialized from the state of the specified instance.</summary>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirXmlSerializationSettings.CopyTo(Hl7.Fhir.Serialization.FhirXmlSerializationSettings)">
+            <summary>Copy all configuration settings to another instance.</summary>
+            <param name="other">Another <see cref="T:Hl7.Fhir.Serialization.FhirXmlSerializationSettings"/> instance.</param>
+            <exception cref="T:System.ArgumentNullException">The specified argument is <c>null</c>.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirXmlSerializationSettings.Clone">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirXmlSerializationSettings"/> object that is a copy of the current instance.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.FhirXmlSerializationSettings.CreateDefault">
+            <summary>Creates a new <see cref="T:Hl7.Fhir.Serialization.FhirXmlSerializationSettings"/> instance with default property values.</summary>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.ISeekableEnumerator`1">
+            <summary>
+            Represents a stream of resources which is both enumerable and enables the user to return to previous positions.
+            </summary>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.INavigatorStream">
+            <summary>
+            Provides a sequence of <see cref="T:Hl7.Fhir.ElementModel.ISourceNode"/> instances to efficiently
+            extract information from a raw FHIR resource file, independent of the
+            underlying resource serialization format. Also supports resource bundles.
+            </summary>
+            <remarks>
+            Implements <see cref="T:System.Collections.Generic.IEnumerator`1"/>, but not <see cref="T:System.Collections.Generic.IEnumerable`1"/>.
+            Iteration state is tied to the stream instance.
+            Nested enumeration is NOT supported.
+            </remarks>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.INavigatorStream.ResourceType">
+            <summary>The typename of the underlying resource (container).</summary>
+            <remarks>Call Current.Type to determine the type of the currently enumerated resource.</remarks>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.INavigatorStream.IsBundle">
+            <summary>Returns <c>true</c> if the underlying file represents a Bundle resource, or <c>false</c> otherwise.</summary>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.JsonNavigatorStream">
+            <summary>
+            Provides efficient extraction of summary information from a raw FHIR JSON resource file,
+            without actually deserializing the full resource. Also supports resource bundles.
+            </summary>
+            <remarks>Replacement for JsonArtifactScanner (now obsolete).</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.JsonNavigatorStream.#ctor(System.String)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.JsonNavigatorStream"/> instance for the specified serialized json resource file.</summary>
+            <param name="path">The filepath of a serialized json resource.</param>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.JsonNavigatorStream.FromPath(System.String)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.JsonNavigatorStream"/> instance for the specified serialized json resource file.</summary>
+            <param name="path">The filepath of a serialized json resource.</param>
+            <returns>A new <see cref="T:Hl7.Fhir.Serialization.JsonNavigatorStream"/> instance.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.JsonNavigatorStream.FromPath(System.String,System.Boolean,Hl7.Fhir.Serialization.FhirJsonParsingSettings)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.JsonNavigatorStream"/> instance for the specified serialized json resource file.</summary>
+            <param name="path">The filepath of a serialized json resource.</param>
+            <param name="disposeStream">Determines if the <see cref="M:Hl7.Fhir.Serialization.JsonNavigatorStream.Dispose"/> method should also dispose the internal <see cref="T:System.IO.Stream"/> instance.</param>
+            <param name="settings">Parser settings that control de-serialization behavior.</param>
+            <returns>A new <see cref="T:Hl7.Fhir.Serialization.JsonNavigatorStream"/> instance.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.JsonNavigatorStream.#ctor(System.IO.Stream)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.JsonNavigatorStream"/> instance for the specified json resource stream.</summary>
+            <param name="stream">A stream that returns a serialized json resource.</param>
+            <remarks>The <see cref="M:Hl7.Fhir.Serialization.JsonNavigatorStream.Dispose"/> method also disposes the specified <paramref name="stream"/> instance.</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.JsonNavigatorStream.#ctor(System.IO.Stream,System.Boolean)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.JsonNavigatorStream"/> instance for the specified json resource stream.</summary>
+            <param name="stream">A stream that returns a serialized json resource.</param>
+            <param name="disposeStream">Determines if the <see cref="M:Hl7.Fhir.Serialization.JsonNavigatorStream.Dispose"/> method should also dispose the specified <paramref name="stream"/> instance.</param>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.JsonNavigatorStream.#ctor(System.IO.Stream,System.Boolean,Hl7.Fhir.Serialization.FhirJsonParsingSettings)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.JsonNavigatorStream"/> instance for the specified json resource stream.</summary>
+            <param name="stream">A stream that returns a serialized json resource.</param>
+            <param name="disposeStream">Determines if the <see cref="M:Hl7.Fhir.Serialization.JsonNavigatorStream.Dispose"/> method should also dispose the specified <paramref name="stream"/> instance.</param>
+            <param name="settings">Parser settings that control de-serialization behavior.</param>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.JsonNavigatorStream.ResourceType">
+            <summary>The typename of the underlying resource (container).</summary>
+            <remarks>Call Current.Type to determine the type of the currently enumerated resource.</remarks>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.JsonNavigatorStream.IsBundle">
+            <summary>Returns <c>true</c> if the underlying file represents a Bundle resource, or <c>false</c> otherwise.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.JsonNavigatorStream.Reset">
+            <summary>
+            Reset the stream to the start position.
+            Requires the internal stream, as specified in the ctor, to support seeking.
+            </summary>
+            <exception cref="T:System.NotSupportedException">The internal stream does not support seeking.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.JsonNavigatorStream.Seek(System.String)">
+            <summary>Navigate to the artifact with the specified uri.</summary>
+            <param name="position">The uri of the target artifact.</param>
+            <returns><c>true</c> if found, or <c>false</c> otherwise.</returns>
+            <exception cref="T:System.NotSupportedException">The internal stream does not support seeking.</exception>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.JsonNavigatorStream.Position">
+            <summary>Returns the full resource uri of the current artifact.</summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.JsonNavigatorStream.Current">
+            <summary>Returns a new <see cref="T:Hl7.Fhir.ElementModel.ISourceNode"/> instance for the current entry.</summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.JsonNavigatorStream.ParserSettings">
+            <summary>Gets the configuration settings that control parsing behavior.</summary>
+            <value>Returns a (non-<c>null</c>) <see cref="T:Hl7.Fhir.Serialization.FhirJsonParsingSettings"/> instance.</value>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.NavigatorStreamFactory">
+            <summary>Delegate to create an <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance for the specified file path specification.</summary>
+            <param name="filePath">The full path to a FHIR resource.</param>
+            <returns>An <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance, or <c>null</c> if the file format is not recognized.</returns>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.DefaultNavigatorStreamFactory">
+            <summary>
+            Factory to create new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instances for navigating
+            serialized resources, independent of the underlying resource serialization format.
+            <para>
+            The internal XML and JSON parsers use the default configuration settings.
+            Alternatively, use <see cref="T:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory"/> to specify custom parser settings.
+            </para>
+            </summary>
+            <remarks>Supports FHIR resource files with ".xml" and ".json" extensions.</remarks>
+            <seealso cref="T:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory"/>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.DefaultNavigatorStreamFactory.Create(System.IO.Stream,System.String)">
+            <summary>
+            Creates a new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance to access the contents of a
+            serialized resource stream, independent of the serialization format.
+            </summary>
+            <param name="stream">A <see cref="T:System.IO.Stream"/> for reading a serialized FHIR resource.</param>
+            <param name="format">A string value that represents the FHIR resource serialization format, as defined by <see cref="T:Hl7.Fhir.Serialization.FhirSerializationFormats"/>.</param>
+            <returns>A new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance.</returns>
+            <remarks>Supports XML and JSON serialization formats.</remarks>
+            <exception cref="T:System.NotSupportedException">The specified FHIR resource serialization format is not supported.</exception>
+            <seealso cref="T:Hl7.Fhir.Serialization.FhirSerializationFormats"/>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.DefaultNavigatorStreamFactory.Create(System.IO.Stream,System.String,System.Boolean)">
+            <summary>
+            Creates a new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance to access the contents of a
+            serialized resource stream, independent of the serialization format.
+            </summary>
+            <param name="stream">A <see cref="T:System.IO.Stream"/> for reading a serialized FHIR resource.</param>
+            <param name="format">A string value that represents the FHIR resource serialization format, as defined by <see cref="T:Hl7.Fhir.Serialization.FhirSerializationFormats"/>.</param>
+            <param name="disposeStream">Determines if the <see cref="M:System.IDisposable.Dispose"/> method should also dispose the specified <paramref name="stream"/> instance.</param>
+            <returns>A new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance.</returns>
+            <remarks>Supports XML and JSON serialization formats.</remarks>
+            <exception cref="T:System.NotSupportedException">The specified FHIR resource serialization format is not supported.</exception>
+            <seealso cref="T:Hl7.Fhir.Serialization.FhirSerializationFormats"/>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.DefaultNavigatorStreamFactory.GetSerializationFormat(System.String)">
+            <summary>Determines serialization format by inspecting the file extension.</summary>
+            <param name="path">File path to a FHIR artifact.</param>
+            <returns>A constant string value as defined by <see cref="T:Hl7.Fhir.Serialization.FhirSerializationFormats"/>, or <c>null</c>.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.DefaultNavigatorStreamFactory.Create(System.String)">
+            <summary>
+            Creates a new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance to access the contents of a
+            serialized resource, independent of the underlying resource serialization format.
+            </summary>
+            <param name="path">File path specification of a FHIR resource file.</param>
+            <returns>A new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance, or <c>null</c> (unsupported file extension).</returns>
+            <remarks>Supports FHIR resource files with ".xml" and ".json" extensions.</remarks>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.DefaultNavigatorStreamFactory.FactoryDelegate">
+            <summary><see cref="T:Hl7.Fhir.Serialization.NavigatorStreamFactory"/> delegate for the <see cref="M:Hl7.Fhir.Serialization.DefaultNavigatorStreamFactory.Create(System.String)"/> method.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.DefaultNavigatorStreamFactory.Create(System.String,System.Boolean)">
+            <summary>
+            Creates a new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance to access the contents of a
+            serialized resource, independent of the underlying resource serialization format.
+            </summary>
+            <param name="path">File path specification of a FHIR resource file.</param>
+            <param name="disposeStream">Determines if the <see cref="M:System.IDisposable.Dispose"/> method should also dispose the internal <see cref="T:System.IO.Stream"/> instance.</param>
+            <returns>A new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance, or <c>null</c> (unsupported file extension).</returns>
+            <remarks>Supports FHIR resource files with ".xml" and ".json" extensions.</remarks>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory">
+            <summary>
+            Factory to create new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instances for navigating
+            serialized resources, independent of the underlying resource serialization format.
+            <para>
+            The internal XML and JSON parsers use the specified configuration settings.
+            Alternatively, use the <see cref="T:Hl7.Fhir.Serialization.DefaultNavigatorStreamFactory"/> to use default parser configuration settings.
+            </para>
+            </summary>
+            <remarks>Supports FHIR resource files with ".xml" and ".json" extensions.</remarks>
+            <seealso cref="T:Hl7.Fhir.Serialization.DefaultNavigatorStreamFactory"/>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.CreateDefault">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory"/> instance for the default parser settings.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.GetSerializationFormat(System.String)">
+            <summary>Determines serialization format by inspecting the file extension.</summary>
+            <param name="path">File path to a FHIR artifact.</param>
+            <returns>A constant string value as defined by <see cref="T:Hl7.Fhir.Serialization.FhirSerializationFormats"/>, or <c>null</c>.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.#ctor(Hl7.Fhir.Serialization.FhirXmlParsingSettings,Hl7.Fhir.Serialization.FhirJsonParsingSettings)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory"/> instance for the specified parser configuration settings.</summary>
+            <param name="xmlParsingSettings">Configuration settings that control the behavior of the internal XML parser.</param>
+            <param name="jsonParsingSettings">Configuration settings that control the behavior of the internal JSON parser.</param>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.#ctor(System.Boolean)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory"/> instance.</summary>
+            <param name="permissiveParsing">Specify <c>true</c> to suppress raising exceptions for recoverable parsing errors.</param>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.DisposeStream">
+            <summary>Determines if disposing the <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> should also dispose the internal <see cref="T:System.IO.Stream"/> instance.</summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.ThrowOnUnsupportedFormat">
+            <summary>
+            Gets or sets a boolean value that controls behavior of the <see cref="M:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.Create(System.String)"/>
+            methods when encountering an unsupported file/serialization format.
+            <para>
+            If <c>true</c>, throw a <see cref="T:System.NotSupportedException"/>, otherwise (<c>false</c>) return <c>null</c>.
+            </para>
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.XmlParsingSettings">
+            <summary>Gets the configuration settings that control the behavior of the XML parser.</summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.JsonParsingSettings">
+            <summary>Gets the configuration settings that control the behavior of the JSON parser.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.Create(System.IO.Stream,System.String)">
+            <summary>
+            Creates a new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance to access the contents of a
+            serialized resource stream, independent of the serialization format,
+            using the current <see cref="P:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.XmlParsingSettings"/> or <see cref="P:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.JsonParsingSettings"/>.
+            </summary>
+            <param name="stream">A <see cref="T:System.IO.Stream"/> for reading a serialized FHIR resource.</param>
+            <param name="format">A string value that represents the FHIR resource serialization format, as defined by <see cref="T:Hl7.Fhir.Serialization.FhirSerializationFormats"/>.</param>
+            <returns>A new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance.</returns>
+            <remarks>Supports XML and JSON serialization formats.</remarks>
+            <exception cref="T:System.NotSupportedException">The specified FHIR resource serialization format is not supported.</exception>
+            <seealso cref="T:Hl7.Fhir.Serialization.FhirSerializationFormats"/>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.Create(System.String)">
+            <summary>
+            Creates a new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance to access the contents of a
+            serialized resource, independent of the underlying resource serialization format,
+            using the current <see cref="P:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.XmlParsingSettings"/> or <see cref="P:Hl7.Fhir.Serialization.ConfigurableNavigatorStreamFactory.JsonParsingSettings"/>.
+            </summary>
+            <param name="path">File path specification of a FHIR resource file.</param>
+            <returns>A new <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> instance, or <c>null</c> (unsupported file extension).</returns>
+            <remarks>Supports FHIR resource files with ".xml" and ".json" extensions.</remarks>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.NavigatorStreamHelper">
+            <summary>Common utility methods for <see cref="T:Hl7.Fhir.Serialization.INavigatorStream"/> implementations.</summary>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.NavigatorStreamHelper.DefaultCanonicalBaseUrlForBundleEntry">
+            <summary>Default base url for generating canonical urls for Bundle entries.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.NavigatorStreamHelper.FormatCanonicalUrlForBundleEntry(System.String,System.String)">
+            <summary>Generate a canonical url for a Bundle entry.</summary>
+            <param name="resourceType">A resource type.</param>
+            <param name="resourceId">A unique resource Id.</param>
+            <returns>A fully qualified canonical url string.</returns>
+            <remarks>The generated url starts with the <see cref="F:Hl7.Fhir.Serialization.NavigatorStreamHelper.DefaultCanonicalBaseUrlForBundleEntry"/>.</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.NavigatorStreamHelper.FormatCanonicalUrl(System.String,System.String,System.String)">
+            <summary>Generate a canonical url from the specified base Url, resource type and id.</summary>
+            <param name="baseUrl">A base url.</param>
+            <param name="resourceType">A resource type.</param>
+            <param name="resourceId">A unique resource Id.</param>
+            <returns>A fully qualified canonical url string.</returns>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.SourceComments.CommentsBefore">
+            <summary>
+            Comments encountered before this node, but after the previous sibling
+            </summary>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.SourceComments.ClosingComments">
+            <summary>
+            Comments encountered after the last child of this element
+            </summary>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.SourceComments.DocumentEndComments">
+            <summary>
+            Comments encountered after the root element of the document
+            </summary>
+        </member>
+        <member name="T:Hl7.Fhir.Serialization.XmlNavigatorStream">
+            <summary>
+            Provides efficient extraction of summary information from a raw FHIR XML resource file,
+            without actually deserializing the full resource. Also supports resource bundles.
+            </summary>
+            <remarks>Replacement for XmlArtifactScanner (now obsolete).</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.XmlNavigatorStream.#ctor(System.String)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.XmlNavigatorStream"/> instance for the specified serialized xml resource file.</summary>
+            <param name="path">The filepath of a serialized xml resource.</param>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.XmlNavigatorStream.FromPath(System.String)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.XmlNavigatorStream"/> instance for the specified serialized xml resource file.</summary>
+            <param name="path">The filepath of a serialized xml resource.</param>
+            <returns>A new <see cref="T:Hl7.Fhir.Serialization.XmlNavigatorStream"/> instance.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.XmlNavigatorStream.FromPath(System.String,System.Boolean,Hl7.Fhir.Serialization.FhirXmlParsingSettings)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.XmlNavigatorStream"/> instance for the specified serialized xml resource file.</summary>
+            <param name="path">The filepath of a serialized xml resource.</param>
+            <param name="disposeStream">Determines if the <see cref="M:Hl7.Fhir.Serialization.XmlNavigatorStream.Dispose"/> method should also dispose the internal <see cref="T:System.IO.Stream"/> instance.</param>
+            <param name="settings">Parser settings that control de-serialization behavior.</param>
+            <returns>A new <see cref="T:Hl7.Fhir.Serialization.XmlNavigatorStream"/> instance.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.XmlNavigatorStream.#ctor(System.IO.Stream)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.XmlNavigatorStream"/> instance for the specified xml resource stream.</summary>
+            <param name="stream">A stream that returns a serialized xml resource.</param>
+            <remarks>The <see cref="M:Hl7.Fhir.Serialization.XmlNavigatorStream.Dispose"/> method also disposes the specified <paramref name="stream"/> instance.</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.XmlNavigatorStream.#ctor(System.IO.Stream,System.Boolean)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.XmlNavigatorStream"/> instance for the specified xml resource stream.</summary>
+            <param name="stream">A stream that returns a serialized xml resource.</param>
+            <param name="disposeStream">Determines if the <see cref="M:Hl7.Fhir.Serialization.XmlNavigatorStream.Dispose"/> method should also dispose the specified <paramref name="stream"/> instance.</param>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.XmlNavigatorStream.#ctor(System.IO.Stream,System.Boolean,Hl7.Fhir.Serialization.FhirXmlParsingSettings)">
+            <summary>Create a new <see cref="T:Hl7.Fhir.Serialization.XmlNavigatorStream"/> instance for the specified xml resource stream.</summary>
+            <param name="stream">A stream that returns a serialized xml resource.</param>
+            <param name="disposeStream">Determines if the <see cref="M:Hl7.Fhir.Serialization.XmlNavigatorStream.Dispose"/> method should also dispose the specified <paramref name="stream"/> instance.</param>
+            <param name="settings">Parser settings that control de-serialization behavior.</param>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.XmlNavigatorStream.ResourceType">
+            <summary>The typename of the underlying resource (container).</summary>
+            <remarks>Call Current.Type to determine the type of the currently enumerated resource.</remarks>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.XmlNavigatorStream.IsBundle">
+            <summary>Returns <c>true</c> if the underlying file represents a Bundle resource, or <c>false</c> otherwise.</summary>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.XmlNavigatorStream.Reset">
+            <summary>
+            Reset the stream to the start position.
+            Requires the internal stream, as specified in the ctor, to support seeking.
+            </summary>
+            <exception cref="T:System.NotSupportedException">The internal stream does not support seeking.</exception>
+        </member>
+        <member name="M:Hl7.Fhir.Serialization.XmlNavigatorStream.Seek(System.String)">
+            <summary>Navigate to the artifact with the specified uri.</summary>
+            <param name="position">The uri of the target artifact.</param>
+            <returns><c>true</c> if found, or <c>false</c> otherwise.</returns>
+            <exception cref="T:System.NotSupportedException">The internal stream does not support seeking.</exception>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.XmlNavigatorStream.Position">
+            <summary>Returns the full resource uri of the current artifact.</summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.XmlNavigatorStream.Current">
+            <summary>Returns a new <see cref="T:Hl7.Fhir.ElementModel.ISourceNode"/> instance for the current entry.</summary>
+        </member>
+        <member name="P:Hl7.Fhir.Serialization.XmlNavigatorStream.ParserSettings">
+            <summary>Gets the configuration settings that control parsing behavior.</summary>
+            <value>Returns a (non-<c>null</c>) <see cref="T:Hl7.Fhir.Serialization.FhirXmlParsingSettings"/> instance.</value>
+        </member>
+        <member name="F:Hl7.Fhir.Serialization.XmlSerializationDetails.NodeText">
+            <summary>
+            All child XText nodes
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.SerializationUtil.SanitizeXml(System.String)">
+            <summary>
+            Replace all the XML specific special characters with the XHTML equivalents
+            </summary>
+            <remarks>
+            this is based on own research plus combining with results shown here:
+            http://www.codeproject.com/Articles/298519/Fast-Token-Replacement-in-Csharp
+            The RegEx approach does not require multiple passes or string creations
+            while replacing all the items.
+            It occurs in O(n) StringBuilder concatenations + O(n) dictionary lookups
+            </remarks>
+            <param name="xml"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

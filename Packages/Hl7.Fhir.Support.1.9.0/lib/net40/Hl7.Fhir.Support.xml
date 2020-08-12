@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Hl7.Fhir.Support</name>
+    </assembly>
+    <members>
+        <member name="M:Hl7.Fhir.Support.Model.Primitives.GetPrimitiveTypeName(System.Type)">
+            <summary>
+            Derives the basic FHIR type name from a C# primitive type.
+            </summary>
+            <param name="dotNetType">Value to determine the type for.</param>
+            <returns></returns>
+            <remarks>This function maps a primitive .NET value unto the subset of types supported by FhirPath.</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.Support.Model.Primitives.TryGetPrimitiveTypeName(System.Type,System.String@)">
+            <summary>
+            Derives the basic FHIR type name from a C# primitive type.
+            </summary>
+            <param name="dotNetType">The Value to determine the type for.</param>
+            <param name="typeName">Primitive type name for the .NET primitive, or null.</param>
+            <returns>Returns false if the function was unable to map the .NET type to a FHIR type.</returns>
+            <remarks>This function maps a primitive .NET value unto the subset of types supported by FhirPath.</remarks>
+        </member>
+        <member name="M:Hl7.Fhir.Support.Model.Primitives.ConvertToPrimitiveValue(System.Object)">
+            <summary>
+            Converts a primitive .NET value to a primitive FHIR-supported primitive value.
+            </summary>
+            <param name="value"></param>
+            <returns>A primitive value that is directly supported in FHIR and the .Value attribute of ITypedElement.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.Support.Model.Primitives.TryConvertToPrimitiveValue(System.Object,System.Object@)">
+            <summary>
+            Tries to converts a primitive .NET value to a primitive FHIR-supported primitive value.
+            </summary>
+            <param name="value"></param>
+            <param name="primitiveValue">A primitive value that is directly supported in FHIR and the .Value attribute of ITypedElement.</param>
+            <returns>Whether the conversion succeeded.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.Support.Model.Primitives.GetNativeRepresentation(System.String)">
+            <summary>
+            Returns the .NET type used to represent the given FHIR primitive type.
+            </summary>
+            <param name="typeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Hl7.Fhir.Support.Model.Primitives.TryGetNativeRepresentation(System.String,System.Type@)">
+            <summary>
+            Returns the .NET type used to represent the given FHIR primitive type.
+            </summary>
+            <param name="typeName">A FHIR type name</param>
+            <param name="nativeType">The corresponding .NET type used by this library to represent the given type.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Hl7.Fhir.Support.Utility.AnnotationList">
+            <summary>
+            This class implements the interfaces IAnnotatable and IAnnotated. It can be used by the classes that also implements these
+            interfaces to have a common implementation. 
+            This list is thread safe
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Support.Utility.AnnotationList.OfType(System.Type)">
+            <summary>
+            Returns all annotations of type <paramref name="type"/>
+            </summary>
+        </member>
+        <member name="P:Hl7.Fhir.Support.Utility.AnnotationList.IsEmpty">
+            <summary>
+            Gets a value that indicates whether there is an annotation present
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Support.Utility.AnnotationList.AddRange(Hl7.Fhir.Support.Utility.AnnotationList)">
+            <summary>
+            Adds all the annotations from the <paramref name="source"/> to here. It will remove all existing annotations
+            </summary>
+            <param name="source"></param>
+        </member>
+        <member name="P:Hl7.Fhir.Utility.EnumLiteralAttribute.System">
+            <summary>
+            The system name-space of the code system that this literal value comes from 
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.ExceptionSourceExtensions.Catch(Hl7.Fhir.Utility.IExceptionSource,Hl7.Fhir.Utility.ExceptionNotificationHandler,System.Boolean)">
+            <summary>
+            Registers an <see cref="T:Hl7.Fhir.Utility.ExceptionNotificationHandler" /> with an <see cref="T:Hl7.Fhir.Utility.IExceptionSource"/>.
+            </summary>
+            <param name="source"></param>
+            <param name="handler"></param>
+            <param name="forward">If true, also forwards the error to the original handler (if any).</param>
+            <returns>An object that, when disposed, unregisters the handler from the source.</returns>
+            <remarks>
+            <para>This function can be used directly inside a <c>using</c> block, to scope the interception
+            of exceptions by the given handler to that block.</para>
+            <para>The <paramref name="handler"/> replaces the handler already in place in the source (of any), but
+            as soon as executing leaves the block, the handler is unregistered, and the original handler restored.</para>
+            <para>If the source originally had a handler set, the <paramref name="forward"/> can be used to forward
+            the exception to the original handler, after invoking the handler passed in with <paramref name="handler"/>.</para>
+            </remarks>
+            <example>
+            <code>
+            using(source.Catch((o,a) => lastError = a)) 
+            {
+                 var children = source.Children();
+            }
+            </code></example>
+        </member>
+        <member name="T:Hl7.Fhir.Utility.Error">
+            <summary>
+            Utility class for creating and unwrapping <see cref="T:System.Exception"/> instances.
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.Argument(System.String)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentException"/> with the provided properties.
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.Argument(System.String,System.String)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentException"/> with the provided properties.
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.ArgumentNull(System.String)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentNullException"/> with the provided properties.
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.ArgumentNull(System.String,System.String)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentNullException"/> with the provided properties.
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.ArgumentNullOrEmpty(System.String)">
+            <summary>
+            Creates an <see cref="T:System.ArgumentException"/> with a default message.
+            </summary>
+            <param name="parameterName">The name of the parameter that caused the current exception.</param>
+            <returns>The logged <see cref="T:System.Exception"/>.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.InvalidOperation(System.String)">
+            <summary>
+            Creates an <see cref="T:System.InvalidOperationException"/>.
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.InvalidOperation(System.Exception,System.String)">
+            <summary>
+            Creates an <see cref="T:System.InvalidOperationException"/>.
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.NotSupported(System.String)">
+            <summary>
+            Creates an <see cref="T:System.NotSupportedException"/>.
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.NotImplemented(System.String)">
+            <summary>
+            Creates an <see cref="T:System.NotImplementedException"/>.
+            </summary>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.NotImplemented">
+            <summary>
+            Creates an <see cref="T:System.NotImplementedException"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.Format(System.String,System.String,System.Exception)">
+            <summary> 
+            Creates an <see cref="T:System.FormatException"/> with the provided properties. 
+            </summary> 
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.Format(System.String,Hl7.Fhir.Utility.IPositionInfo,System.Exception)">
+            <summary> 
+            Creates an <see cref="T:System.FormatException"/> with the provided properties. 
+            </summary> 
+        </member>
+        <member name="M:Hl7.Fhir.Utility.Error.Format(System.String,System.Int32,System.Int32,System.Exception)">
+            <summary> 
+            Creates an <see cref="T:System.FormatException"/> with the provided properties. 
+            </summary> 
+        </member>
+        <member name="M:Hl7.Fhir.Utility.ReflectionHelper.GetAttributeOnEnum``1(System.Enum)">
+            <summary>
+            Gets an attribute on an enum field value
+            </summary>
+            <typeparam name="T">The type of the attribute you want to retrieve</typeparam>
+            <param name="enumVal">The enum value</param>
+            <returns>The attribute of type T that exists on the enum value</returns>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.ReflectionHelper.GetCollectionItemType(System.Type)">
+            <summary>
+            Gets the type of the typed collection's items.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The type of the typed collection's items.</returns>
+        </member>
+        <member name="M:Hl7.Fhir.Utility.StringExtensions.MatchesPrefix(System.String,System.String)">
+            <summary>
+            See if text matches prefix, where the prefix can be either a
+            string, or string ending in '*'. In the latter case a prefix match
+            is done, otherwise the full strings are compared.
+            </summary>
+            <param name="text"></param>
+            <param name="prefix"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Hl7.Fhir.Specification.IElementDefinitionSummary.DefaultTypeName">
+            <summary>
+            Logical Models where a choice type is represented by ElementDefinition.representation = typeAttr might define a default type (elementdefinition-defaulttype extension). null in most cases.
+            </summary>
+        </member>
+        <member name="T:Hl7.Fhir.Specification.IStructureDefinitionSummary">
+            <summary>
+            A class representing a complex type, with child elements. 
+            </summary>
+            <remarks>
+             In FHIR, this interface represents definitions of Resources, datatypes and BackboneElements. 
+             BackboneElements will have the TypeName set to "BackboneElement" (in resources) or "Element" (in datatypes)
+             and IsAbstract set to true.
+             </remarks>
+        </member>
+        <member name="T:Hl7.Fhir.Specification.XmlRepresentation">
+            <summary>
+            Xml Serialization used for primitive values
+            </summary>
+        </member>
+    </members>
+</doc>
